@@ -12,28 +12,16 @@ import java.io.IOException;
 
 @Controller
 public class LoginController {
-	
-	public static String uname;
-	@Autowired
-	LoginService loginService;
-	
-	@Autowired
-	Mailservice mailService;
-	
-	@RequestMapping("/login")
-	public String loginMessage(){
-		return "login";
-	}
-	
-	@RequestMapping("/validatelogin")
-	public String dashboard(@RequestParam String username,@RequestParam String password,
-			ModelMap model)throws Exception, IOException{
-		model.put("username",username);
-		uname=username;
-		if (loginService.isValid(username,password)) {
-			mailService.sendEmail();
-			return "home";
-		}
-		return "login";
-	}
+
+    public static String uname;
+    @Autowired
+    LoginService loginService;
+
+    @Autowired
+    Mailservice mailService;
+
+    @RequestMapping("/login")
+    public String loginMessage() {
+        return "login";
+    }
 }
