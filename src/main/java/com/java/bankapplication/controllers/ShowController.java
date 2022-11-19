@@ -11,27 +11,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ShowController {
 
-@Autowired
-CheckProfile checkProfile;
+    @Autowired
+    CheckProfile checkProfile;
 
-@Autowired
-ShowService showService;
+    @Autowired
+    ShowService showService;
 
- @GetMapping(path="/showadmin")
- public String showAdmin(ModelMap model) {
-	 model.put("alladmin",checkProfile.getAll("admin"));
-		return "showadmin";
- }
- 
- @GetMapping(path="/showemp")
- public String showEmp(ModelMap model) {
-	 model.put("allemp",checkProfile.getAll("emp"));
-	return "showemp";
- }
- 
- @GetMapping(path="/showcust")
- public String showCust(ModelMap model) {
-	 model.put("allcust",checkProfile.getAll("cust"));
-	return "showcust";
- }
+    @GetMapping(path = "/showadmin")
+    public String showAdmin(ModelMap model) {
+        model.put("alladmin", checkProfile.getAll("admin"));
+        return "showadmin";
+    }
+
+    @GetMapping(path = "/showemp")
+    public String showEmp(ModelMap model) {
+        model.put("allemp", checkProfile.getAll("emp"));
+        return "showemp";
+    }
+
+    @GetMapping(path = "/showcust")
+    public String showCust(ModelMap model) {
+        model.put("allcust", checkProfile.getAll("cust"));
+        return "showcust";
+    }
 }

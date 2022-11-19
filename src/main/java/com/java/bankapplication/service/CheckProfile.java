@@ -11,19 +11,18 @@ import java.util.List;
 @Service
 public class CheckProfile {
 
-	@Autowired
-	UserRepository userRepository;
-	
-	@Autowired
-	DataRepository dataRepository;
-	
-	public List<User> getDetails(String username)
-	{
-		return userRepository.getDetails(username);
-	}
+    @Autowired
+    UserRepository userRepository;
 
-	public List<User> getAll(String role) {
-		
-		return dataRepository.getAll(role);
-	}
+    @Autowired
+    DataRepository dataRepository;
+
+    public List<User> getDetails(String username) {
+        return userRepository.getDetails(username);
+    }
+
+    public List<User> getAll(String role) {
+
+        return dataRepository.getAll(role);
+    }
 }

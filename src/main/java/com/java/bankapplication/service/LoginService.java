@@ -8,14 +8,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginService {
 
-	@Autowired
-	UserRepository userRepository;
-	
-	
-	
-	public boolean isValid(String username, String password) {
-		
-		return userRepository.search(username,password);
-		
-	}
+    @Autowired
+    UserRepository userRepository;
+
+
+    public boolean isValid(String username, String password) {
+
+        return userRepository.search(username, password);
+
+    }
 }
