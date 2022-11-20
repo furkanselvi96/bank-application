@@ -6,15 +6,9 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class LoginService {
+public class SignUpService {
 
     @Autowired
     UserRepository userRepository;
 
-
-    public boolean isValid(String username, String password) {
-
-        return userRepository.search(username, password);
-
-    }
 }
