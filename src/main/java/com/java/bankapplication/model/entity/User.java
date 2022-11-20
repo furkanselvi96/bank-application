@@ -1,7 +1,8 @@
 package com.java.bankapplication.model.entity;
 
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -12,14 +13,14 @@ import javax.persistence.*;
 @Entity(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String firstName;
+    private String name;
     private String lastName;
     private String email;
-    private String tcNum;
+    private String tc;
 
 
 }
