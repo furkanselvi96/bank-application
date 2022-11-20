@@ -1,13 +1,15 @@
 package com.java.bankapplication.repository;
 
-import com.java.bankapplication.model.entity.User;
+import com.java.bankapplication.model.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface UserJpaRepository extends JpaRepository<User, Long> {
+public interface AccountJpaRepository extends JpaRepository<Account, Long> {
 
     @Query
-    User findUserById(Long id);
+    List<Account> findByUserId(Long userId);
 }
