@@ -26,12 +26,6 @@ public class UserService {
             userResponse.setName(userList.get(i).getFirstName());
             userResponseList.add(userResponse);
         }
-        /*
-        user.ifPresent(u -> {
-            userResponse.setName(u.getFirstName());
-            userResponse.setTc(u.getTcNum());
-            userResponse.setName(u.getFirstName());
-        });*/
         return userResponseList;
     }
 
