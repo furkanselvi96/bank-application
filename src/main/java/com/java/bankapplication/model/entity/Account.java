@@ -19,7 +19,7 @@ public class Account {
 
     private Long balance;
     private String currency;
-    @Column(name = "ref_userId", nullable = false)
+    @Column(name = "ref_user_id", nullable = false)
     private Long userId;
 
 }

@@ -21,9 +21,9 @@ public class AccountController {
 
     private final AccountService accountService;
 
-    @GetMapping
+    @GetMapping(path = "/{userId}")
     public ResponseEntity<List<Account>> getUserAccounts(
-            @RequestParam("/userId") Long userId) {
+            @PathVariable Long userId) {
         List<Account> userAccounts = accountService.getUserAccounts(userId);
         return new ResponseEntity<List<Account>>(userAccounts, HttpStatus.OK);
     }
