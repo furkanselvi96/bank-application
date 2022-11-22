@@ -29,12 +29,14 @@ public class AccountController {
     @PostMapping(path = "/{userId}")
     public ResponseEntity<Account> createAccount(
             @PathVariable Long userId,
-            @RequestBody Account account) {
-        return new ResponseEntity<Account>(accountService.createAccount(userId, account), HttpStatus.CREATED);
+            @RequestBody Account accountRequest) {
+        Account account = accountService.createAccount(userId, accountRequest);
+        return new ResponseEntity<Account>(account, HttpStatus.CREATED);
     }
 
     @DeleteMapping(path = "/{accountId}")
-    public ResponseEntity<HttpStatus> deleteAccount(@PathVariable("accountId") Long accountId) {
+    public ResponseEntity<HttpStatus> deleteAccount(
+            @PathVariable("accountId") Long accountId) {
         accountService.deleteAccount(accountId);
         return ResponseEntity.ok().build();
     }
