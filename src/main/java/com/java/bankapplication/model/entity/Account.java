@@ -13,9 +13,9 @@ import javax.persistence.*;
 @Entity(name = "account")
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "account_id", nullable = false)
+    private Long Id;
 
     private Long balance;
     private String currency;
