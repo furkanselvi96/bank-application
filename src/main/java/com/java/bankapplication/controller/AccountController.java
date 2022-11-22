@@ -3,6 +3,8 @@ package com.java.bankapplication.controller;
 import com.java.bankapplication.model.Transaction;
 import com.java.bankapplication.model.entity.Account;
 import com.java.bankapplication.service.AccountService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -15,11 +17,13 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "api/account")
 @Slf4j
+@Api(value = "Account Api Documentation")
 public class AccountController {
 
     private final AccountService accountService;
 
     @GetMapping(path = "/{userId}")
+    @ApiOperation(value = "Get a User Accounts")
     public ResponseEntity<List<Account>> getUserAccounts(
             @PathVariable Long userId) {
         List<Account> userAccounts = accountService.getUserAccounts(userId);
@@ -27,6 +31,7 @@ public class AccountController {
     }
 
     @PostMapping(path = "/{userId}")
+    @ApiOperation(value = "Create new account for a User")
     public ResponseEntity<Account> createAccount(
             @PathVariable Long userId,
             @RequestBody Account accountRequest) {
@@ -35,6 +40,7 @@ public class AccountController {
     }
 
     @DeleteMapping(path = "/{accountId}")
+    @ApiOperation(value = "Delete user account")
     public ResponseEntity<HttpStatus> deleteAccount(
             @PathVariable("accountId") Long accountId) {
         accountService.deleteAccount(accountId);
@@ -42,6 +48,7 @@ public class AccountController {
     }
 
     @PostMapping(path = "/transfer")
+    @ApiOperation(value = "Money Transfer Operations")
     public ResponseEntity<Object> moneyTransfer(
             @RequestBody Transaction transaction) {
         accountService.moneyTransfer(transaction);
