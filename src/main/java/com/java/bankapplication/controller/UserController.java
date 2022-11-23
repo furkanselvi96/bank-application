@@ -25,9 +25,13 @@ public class UserController {
     @PostMapping
     @ApiOperation(value = "New user create")
     public ResponseEntity<Object> createUser(@RequestBody User user) {
-        user = userService.createUser(user);
-        return new ResponseEntity<>(
-                "User is created successfully with ID = " + user.getId(), HttpStatus.CREATED);
+        boolean checkResponse = false;
+        checkResponse = userService.createUser(user);
+        if (checkResponse)
+            return new ResponseEntity<>(
+                    "User is created successfully with ID = " + user.getId(), HttpStatus.CREATED);
+        else
+            return new ResponseEntity<>("User is not created", HttpStatus.NOT_FOUND);
     }
 
     @GetMapping
