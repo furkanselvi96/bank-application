@@ -2,15 +2,16 @@ package com.java.bankapplication.service;
 
 import com.java.bankapplication.model.Transaction;
 import com.java.bankapplication.model.entity.Account;
-import com.java.bankapplication.model.entity.User;
 import com.java.bankapplication.repository.AccountJpaRepository;
 import com.java.bankapplication.repository.UserJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.security.AccessControlContext;
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.Set;
 
 @Slf4j
 @Service
