@@ -1,7 +1,12 @@
 package com.java.bankapplication.model.entity;
 
-import lombok.*;
-import org.hibernate.Hibernate;
+import com.sun.istack.NotNull;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
@@ -10,16 +15,26 @@ import javax.persistence.*;
 @Setter
 @RequiredArgsConstructor
 @Entity(name = "users")
+@ApiModel(value = "User model documentation", description = "Model")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    @ApiModelProperty(value = "Unique id field of user object")
     private Long id;
 
-    private String firstName;
+    @ApiModelProperty(value = "Firstname field of user object")
+    private String name;
+
+    @ApiModelProperty(value = "LastName field of user object")
     private String lastName;
+
+    @ApiModelProperty(value = "Email Address field of user object")
     private String email;
-    private String tcNum;
+
+    @Column(name = "tc", nullable = false)
+    @ApiModelProperty(value = "Tc Number field of user object")
+    private String tc;
 
 
 }
