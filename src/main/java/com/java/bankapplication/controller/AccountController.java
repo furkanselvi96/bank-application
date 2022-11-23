@@ -24,16 +24,19 @@ public class AccountController {
 
     @GetMapping(path = "/{userId}")
     @ApiOperation(value = "Get user accounts")
-    public ResponseEntity<List<Account>> getUserAccounts(
+    public ResponseEntity<Object> getUserAccounts(
             @PathVariable("userId") Long userId) {
         List<Account> userAccounts = accountService.getUserAccounts(userId);
-        return new ResponseEntity<List<Account>>(userAccounts, HttpStatus.OK);
+        if (userAccounts == null || userAccounts.isEmpty())
+            return new ResponseEntity<>("User account not found", HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<>(userAccounts, HttpStatus.OK);
     }
 
     @PostMapping(path = "/{userId}")
     @ApiOperation(value = "Create account for user")
     public ResponseEntity<Account> createAccount(
-            @PathVariable("userId") Long userId,
+            @PathVariable(value = "userId") Long userId,
             @RequestBody Account accountRequest) {
         Account account = accountService.createAccount(userId, accountRequest);
         return new ResponseEntity<Account>(account, HttpStatus.CREATED);
@@ -42,7 +45,7 @@ public class AccountController {
     @DeleteMapping(path = "/{accountId}")
     @ApiOperation(value = "Delete user account")
     public ResponseEntity<HttpStatus> deleteAccount(
-            @PathVariable("accountId") Long accountId) {
+            @PathVariable(value = "accountId") Long accountId) {
         accountService.deleteAccount(accountId);
         return ResponseEntity.ok().build();
     }
@@ -52,7 +55,7 @@ public class AccountController {
     public ResponseEntity<Object> moneyTransfer(
             @RequestBody Transaction transaction) {
         accountService.moneyTransfer(transaction);
-        return new ResponseEntity<>("Transfer transaction is completed.",HttpStatus.OK);
+        return new ResponseEntity<>("Transfer transaction is completed.", HttpStatus.OK);
     }
 
 
