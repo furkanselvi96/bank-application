@@ -24,16 +24,16 @@ public class UserService {
         return userJpaRepository.findAll();
     }
 
-    public String updateUser(Long id, User user) {
+    public boolean updateUser(Long id, User user) {
         User updateUser = userJpaRepository.findUserById(id);
-        if (!updateUser.getTc().equals(user.getTc())) {
-            return "Prohibited Transaction ";
+        if (user.getTc() != null && !updateUser.getTc().equals(user.getTc())) {
+            return false;
         }
         updateUser.setName(user.getName());
         updateUser.setLastName(user.getLastName());
         updateUser.setEmail(user.getEmail());
         userJpaRepository.save(updateUser);
-        return "User is updated successfully";
+        return true;
     }
 
     public User createUser(User user) {
@@ -56,12 +56,8 @@ public class UserService {
     }
 
     public boolean isUserExist(Long id) {
-        Set<Long> userIdSet = new HashSet<>();
-        userIdSet.addAll(userJpaRepository.findAllUserId());
-        if (!userIdSet.contains(id)) {
-            return false;
-        } else
-            return true;
+        Set<Long> userIdSet = new HashSet<>(userJpaRepository.findAllUserId());
+        return userIdSet.contains(id);
     }
 
 }

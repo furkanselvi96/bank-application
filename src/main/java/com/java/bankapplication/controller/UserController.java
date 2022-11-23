@@ -47,10 +47,15 @@ public class UserController {
             @PathVariable("id") Long id,
             @RequestBody User user) {
         boolean isUserExist = userService.isUserExist(id);
+        boolean checkResponse = false;
         if (isUserExist) {
-            return new ResponseEntity<>(userService.updateUser(id, user), HttpStatus.OK);
+            checkResponse = userService.updateUser(id, user);
+            if (checkResponse)
+                return new ResponseEntity<>("User is updated successfully", HttpStatus.OK);
+            else
+                return new ResponseEntity<>("Prohibited Transaction ", HttpStatus.FORBIDDEN);
         }
-        return new ResponseEntity<>(userService.updateUser(id, user),HttpStatus.FORBIDDEN);
+        throw new UserNotFoundException();
     }
 
 }
