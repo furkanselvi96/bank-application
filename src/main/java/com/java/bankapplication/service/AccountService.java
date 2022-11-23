@@ -25,7 +25,7 @@ public class AccountService {
 
     public List<Account> getUserAccounts(Long userId) {
         List<Account> userAccounts = accountJpaRepository.findByUserId(userId);
-        if (userAccounts.isEmpty()) {
+        if (userAccounts == null || userAccounts.isEmpty()) {
             log.info("User's bank account not found");
             return null;
         }

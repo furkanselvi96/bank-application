@@ -27,8 +27,7 @@ public class UserController {
     public ResponseEntity<Object> createUser(@RequestBody User user) {
         user = userService.createUser(user);
         return new ResponseEntity<>(
-                "User is created successfully with ID = " + user.getId(),
-                HttpStatus.CREATED);
+                "User is created successfully with ID = " + user.getId(), HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -44,7 +43,7 @@ public class UserController {
     @PutMapping(path = "/{id}")
     @ApiOperation(value = "Update user")
     public ResponseEntity<Object> updateUser(
-            @PathVariable("id") Long id,
+            @PathVariable(value = "id") Long id,
             @RequestBody User user) {
         boolean isUserExist = userService.isUserExist(id);
         boolean checkResponse = false;
