@@ -23,7 +23,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    @ApiOperation(value = "New User Create method")
+    @ApiOperation(value = "New user create")
     public ResponseEntity<Object> createUser(@RequestBody User user) {
         user = userService.createUser(user);
         return new ResponseEntity<>(
@@ -32,17 +32,17 @@ public class UserController {
     }
 
     @GetMapping
-    @ApiOperation(value = "Get All Users Method")
+    @ApiOperation(value = "Get all users")
     public ResponseEntity<Object> getAllUser() {
         List<User> userList = userService.getAllUser();
         if (userList.isEmpty()) {
-            log.info("Empty User Repository!");
+            throw new UserNotFoundException();
         }
         return new ResponseEntity<Object>(userList, HttpStatus.OK);
     }
 
     @PutMapping(path = "/{id}")
-    @ApiOperation(value = "Update User method")
+    @ApiOperation(value = "Update user")
     public ResponseEntity<Object> updateUser(
             @PathVariable("id") Long id,
             @RequestBody User user) {

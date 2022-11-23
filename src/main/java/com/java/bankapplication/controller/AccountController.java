@@ -23,7 +23,7 @@ public class AccountController {
     private final AccountService accountService;
 
     @GetMapping(path = "/{userId}")
-    @ApiOperation(value = "Get a User Accounts")
+    @ApiOperation(value = "Get user accounts")
     public ResponseEntity<List<Account>> getUserAccounts(
             @PathVariable Long userId) {
         List<Account> userAccounts = accountService.getUserAccounts(userId);
@@ -31,7 +31,7 @@ public class AccountController {
     }
 
     @PostMapping(path = "/{userId}")
-    @ApiOperation(value = "Create new account for a User")
+    @ApiOperation(value = "Create account for user")
     public ResponseEntity<Account> createAccount(
             @PathVariable Long userId,
             @RequestBody Account accountRequest) {
