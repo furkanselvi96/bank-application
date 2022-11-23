@@ -36,12 +36,12 @@ public class UserService {
         return true;
     }
 
-    public User createUser(User user) {
+    public boolean createUser(User user) {
         char[] tcNumbers = user.getTc().toCharArray();
         //if Tc is empty || tc length is not 11 || Tc No first number is cannot be zero.
         if (user.getTc() == null || user.getTc().length() != 11 || tcNumbers[0] == 0) {
             System.out.println("Wrong TC No!");
-            return null;
+            return false;
         }
         List<User> allUsers = userJpaRepository.findAll();
         List<String> usersTc = new ArrayList<>();
@@ -50,9 +50,10 @@ public class UserService {
         }
         if (usersTc.contains(user.getTc())) {
             log.info("TC No already exist!");
-            return null;
+            return false;
         }
-        return userJpaRepository.save(user);
+        userJpaRepository.save(user);
+        return true;
     }
 
     public boolean isUserExist(Long id) {
