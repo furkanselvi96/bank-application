@@ -25,15 +25,15 @@ public class UserService {
     }
 
     public String updateUser(Long id, User user) {
-        User updateUser = userJpaRepository.findUserById(user.getId());
+        User updateUser = userJpaRepository.findUserById(id);
         if (!updateUser.getTc().equals(user.getTc())) {
-            return "Invalid operation.";
+            return "Prohibited Transaction ";
         }
         updateUser.setName(user.getName());
         updateUser.setLastName(user.getLastName());
         updateUser.setEmail(user.getEmail());
         userJpaRepository.save(updateUser);
-        return "User is updated successfully.";
+        return "User is updated successfully";
     }
 
     public User createUser(User user) {

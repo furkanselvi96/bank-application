@@ -48,11 +48,9 @@ public class UserController {
             @RequestBody User user) {
         boolean isUserExist = userService.isUserExist(id);
         if (isUserExist) {
-            userService.updateUser(id, user);
-            return new ResponseEntity<>("User is updated successfully", HttpStatus.OK);
-        } else {
-            throw new UserNotFoundException();
+            return new ResponseEntity<>(userService.updateUser(id, user), HttpStatus.OK);
         }
+        return new ResponseEntity<>(userService.updateUser(id, user),HttpStatus.FORBIDDEN);
     }
 
 }
